@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/coding-with-drewt/static/css/main.c07341b2.chunk.css",
+    "main.css": "/coding-with-drewt/static/css/main.d673d0bf.chunk.css",
     "main.js": "/coding-with-drewt/static/js/main.ecc2593d.chunk.js",
     "main.js.map": "/coding-with-drewt/static/js/main.ecc2593d.chunk.js.map",
     "runtime-main.js": "/coding-with-drewt/static/js/runtime-main.c25c4af1.js",
@@ -10,13 +10,13 @@
     "static/js/3.979eaeef.chunk.js": "/coding-with-drewt/static/js/3.979eaeef.chunk.js",
     "static/js/3.979eaeef.chunk.js.map": "/coding-with-drewt/static/js/3.979eaeef.chunk.js.map",
     "index.html": "/coding-with-drewt/index.html",
-    "static/css/main.c07341b2.chunk.css.map": "/coding-with-drewt/static/css/main.c07341b2.chunk.css.map",
+    "static/css/main.d673d0bf.chunk.css.map": "/coding-with-drewt/static/css/main.d673d0bf.chunk.css.map",
     "static/js/2.7b2743d3.chunk.js.LICENSE.txt": "/coding-with-drewt/static/js/2.7b2743d3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c25c4af1.js",
     "static/js/2.7b2743d3.chunk.js",
-    "static/css/main.c07341b2.chunk.css",
+    "static/css/main.d673d0bf.chunk.css",
     "static/js/main.ecc2593d.chunk.js"
   ]
 }
