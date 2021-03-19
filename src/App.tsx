@@ -28,16 +28,21 @@ function App() {
   const doWhatOliviaSays = () => {
     // When a user clicks a button do this:
 
-    const newChores = [
-      ...chores,
+    const newChores = [...chores]
+
+
+    newChores.push(
       { title: 'Make your bed', severity: Severity.High },
       { title: 'Wash the dishes', severity: Severity.Extreme }
-    ]
+    )
 
     setChores(newChores)
 
     console.log(newChores)
   }
+
+  const giannisChores: string[] = ['Pet Jer', 'Clean my laundry', 'make the bed']
+  const drewsChores: string[] = ['Clean the litter box', 'brush my teeth']
 
   return (
     <div className="App">
@@ -59,27 +64,35 @@ function App() {
         <hr />
 
 
+        {/* 
+  [
+    { title: 'make your bed' }, 
+    { title: 'wash the dishes' }
+  ]
+
+
+    <TodoItem title="make your bed" />
+    <TodoItem title="wash the dishes" />
+
+*/}
         {chores.map((chore) => {
           return (
             <TodoItem title={chore.title} severity={chore.severity} />
           )
         })}
 
-        {/* 
-        [1, 4, 9, 16]
-        [2, 8, 18, 32]
-         */}
+        <hr />
+
+        {/* Gianni's Chores */}
+        {giannisChores.map(chore => <TodoItem title={chore} />)}
+
+        {/* {[<TodoItem title="Pet Jer" />, <TodoItem title="Clean my laundry" />, <TodoItem title="make the bed" />]} */}
 
         <hr />
-        {/* <Todo title="Take out the trash" severity={Severity.Medium} />
-        <Todo title="See Despicable Me 2...again" /> */}
-        {/* <TodoItem title="Drink Tea" />
-        <TodoItem title="Pet Jer" severity={Severity.Extreme} />
-        <TodoItem title="I did it" />
-        <TodoItem title="woot woooooot" />
-        <TodoItem title="Clean my laundry" severity={Severity.High} />
-        <TodoItem title="make the bed" severity={Severity.Medium} />
-        <TodoItem title="no stop just stop we're not doing this anymore" /> */}
+
+        {/* Drew's Chores */}
+        {drewsChores.map(chore => <TodoItem title={chore} />)}
+
 
         {/* End of canvas */}
       </div>
