@@ -1,20 +1,20 @@
 import React, { FunctionComponent } from 'react'
 import './Todo.css'
+import { Severity, Todo } from '../../types'
 
-interface Props {
-    /** The title of the TODO item. */
-    title: string
+interface CircleProps {
+    color: string
 }
 
-const Circle: FunctionComponent = () => {
-    return <div className="circle"></div>
-}
+const Circle: FunctionComponent<CircleProps> = ({ color }) => <div className="circle" style={{ backgroundColor: color }} />
 
-export const Todo: FunctionComponent<Props> = ({ title }) => {
+export const TodoItem: FunctionComponent<Todo> = (props) => {
+    const severity = props.severity ?? Severity.Low
+
     return (
         <div className="todo">
-            <Circle />
-           Task: {title}
+            <Circle color={severity} />
+            Task: {props.title}
         </div>
     )
 }

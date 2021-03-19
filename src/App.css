@@ -12,3 +12,13 @@
   flex-direction: column;
 }
 
+.btn {
+  display: inline-block;
+  width: 200px;
+  padding: 32px;
+  border-radius: 16px;
+  font-size: 16px;
+  background-color: lightblue;
+  color: black;
+
+}
