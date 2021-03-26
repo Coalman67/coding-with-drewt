@@ -17,81 +17,74 @@ const todos: Todo[] = [
   }
 ]
 
+const defaultChore: Todo = {
+  title: 'Watch the Birbs',
+  severity: Severity.Medium
+}
+
 function App() {
-
-  console.log('hello fiona')
-
   const [chores, setChores] = useState<Todo[]>([])
 
   console.log(chores)
 
-  const doWhatOliviaSays = () => {
-    // When a user clicks a button do this:
+  function addChore() {
+    alert('hi Fiona, Adding chore now')
 
     const newChores = [...chores]
-
-
-    newChores.push(
-      { title: 'Make your bed', severity: Severity.High },
-      { title: 'Wash the dishes', severity: Severity.Extreme }
-    )
-
+    newChores.push(defaultChore)
     setChores(newChores)
-
-    console.log(newChores)
   }
 
-  const giannisChores: string[] = ['Pet Jer', 'Clean my laundry', 'make the bed']
-  const drewsChores: string[] = ['Clean the litter box', 'brush my teeth']
+  function removeChore() {
+    alert('REMOVING CHORE')
+
+    const newChores = [...chores]
+    newChores.pop()
+    setChores(newChores)
+  }
+
+
 
   return (
     <div className="App">
       <div className="container">
         {/* The canvas */}
 
-
-        <button type="button" className="btn"
-          // WHEN A USER CLICKS
-          onClick={
-            // DO THIS
-            () => {
-              doWhatOliviaSays()
-            }
-          }>
-          Add to Our List
+        <div>
+          <button type="button" className="btn" style={{ marginRight: 16 }}
+            // WHEN A USER CLICKS
+            onClick={
+              // DO THIS
+              () => {
+                addChore()
+              }
+            }>
+            Add Chore
         </button>
 
-        <hr />
-
-
-        {/* 
-  [
-    { title: 'make your bed' }, 
-    { title: 'wash the dishes' }
-  ]
-
-
-    <TodoItem title="make your bed" />
-    <TodoItem title="wash the dishes" />
-
-*/}
-        {chores.map((chore) => {
-          return (
-            <TodoItem title={chore.title} severity={chore.severity} />
-          )
-        })}
+          <button type="button" className="btn"
+            // WHEN A USER CLICKS
+            onClick={
+              // DO THIS
+              () => {
+                removeChore()
+              }
+            }>
+            Remove Chore
+        </button>
+        </div>
 
         <hr />
 
-        {/* Gianni's Chores */}
-        {giannisChores.map(chore => <TodoItem title={chore} />)}
 
-        {/* {[<TodoItem title="Pet Jer" />, <TodoItem title="Clean my laundry" />, <TodoItem title="make the bed" />]} */}
+
+
+        {chores.map((chore, i) =>
+          <TodoItem key={`${i}:${chore.title}`} title={chore.title} severity={chore.severity} />
+        )}
 
         <hr />
 
-        {/* Drew's Chores */}
-        {drewsChores.map(chore => <TodoItem title={chore} />)}
 
 
         {/* End of canvas */}
