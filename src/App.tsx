@@ -22,22 +22,26 @@ const defaultChore: Todo = {
   severity: Severity.Medium
 }
 
+
 function App() {
   const [chores, setChores] = useState<Todo[]>([])
+  const [title, setTitle] = useState<string>('hello')
 
-  console.log(chores)
+
+
+  console.log(title)
 
   function addChore() {
-    alert('hi Fiona, Adding chore now')
-
     const newChores = [...chores]
-    newChores.push(defaultChore)
+
+    const newChore: Todo = {
+      title: title
+    }
+    newChores.push(newChore)
     setChores(newChores)
   }
 
   function removeChore() {
-    alert('REMOVING CHORE')
-
     const newChores = [...chores]
     newChores.pop()
     setChores(newChores)
@@ -76,8 +80,12 @@ function App() {
 
         <hr />
 
+        <input id="title" type="text" onChange={event => {
+          const inputValue = event.target.value
+          setTitle(inputValue)
+        }} />
 
-
+        <hr />
 
         {chores.map((chore, i) =>
           <TodoItem key={`${i}:${chore.title}`} title={chore.title} severity={chore.severity} />

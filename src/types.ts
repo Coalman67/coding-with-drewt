@@ -12,6 +12,32 @@ export interface Todo {
     severity?: Severity
 }
 
+export interface Animal {
+    genus: string
+}
+
+export interface Dog extends Animal {
+    breed: string
+}
+
+export interface Turtle extends Animal {
+    shellThickness: number
+}
+
+
+const animal: Animal = {
+    genus: 'idk something'
+}
+
+const violet: Dog = {
+    genus: 'canus',
+    breed: 'something we do not know'
+}
+
+const speedy: Turtle = {
+    shellThickness: 2.3,
+    genus: "sucks to suck slowpoke"
+}
 
 const todo: Todo = {
     title: 'Pet Jer',
