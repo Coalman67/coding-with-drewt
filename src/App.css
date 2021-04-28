@@ -19,4 +19,15 @@
   font-size: 16px;
   background-color: lightblue;
   color: black;
+  cursor: 'pointer';
+}
+
+hr{
+  width: 100%;
+  margin: 8px 0;
+}
+
+button.disabled {
+  background-color: lightgray;
+  cursor: 'not-allowed';
 }

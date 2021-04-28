@@ -16,7 +16,7 @@ const todos: Todo[] = [
     severity: Severity.Extreme,
   }
 ]
-
+//what is an interface again?
 const defaultChore: Todo = {
   title: 'Watch the Birbs',
   severity: Severity.Medium
@@ -28,10 +28,26 @@ function App() {
   const [title, setTitle] = useState<string>('hello')
 
 
-
   console.log(title)
 
   function addChore() {
+
+
+    const isTitleBlank = title.trim().length === 0 // how do we do this?
+
+    const isTitleLengthy = title.length > 20
+
+    console.log(isTitleBlank)
+
+    if (isTitleBlank) {
+      return
+
+    }
+
+    if (isTitleLengthy) {
+      alert('Todo is too long')
+      return
+    }
     const newChores = [...chores]
 
     const newChore: Todo = {
@@ -47,7 +63,7 @@ function App() {
     setChores(newChores)
   }
 
-
+  const canAddTodo = title.length < 20
 
   return (
     <div className="App">
@@ -55,7 +71,8 @@ function App() {
         {/* The canvas */}
 
         <div>
-          <button type="button" className="btn" style={{ marginRight: 16 }}
+          <button type="button" className={`btn ${canAddTodo ? '' : 'disabled'}`} style={{ marginRight: 16 }}
+            disabled={!canAddTodo}
             // WHEN A USER CLICKS
             onClick={
               // DO THIS
@@ -80,7 +97,7 @@ function App() {
 
         <hr />
 
-        <input id="title" type="text" onChange={event => {
+        <input id="title" type="text" maxLength={30} onChange={event => {
           const inputValue = event.target.value
           setTitle(inputValue)
         }} />
