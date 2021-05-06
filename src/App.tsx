@@ -11,6 +11,7 @@ const todos: Todo[] = [
   {
     title: 'See Despicable Me 2...again'
   },
+
   {
     title: 'hello',
     severity: Severity.Extreme,
@@ -22,39 +23,45 @@ const defaultChore: Todo = {
   severity: Severity.Medium
 }
 
+const exampleChoreTitles: string[] = ['Walk the dog', 'Brush my teeth', 'Pet the cat', 'Eat dinner', 'Go to sleep on time']
+
+function getRandomIndex(length: number): number {
+  return Math.floor(Math.random() * length)
+}
 
 function App() {
   const [chores, setChores] = useState<Todo[]>([])
-  const [title, setTitle] = useState<string>('hello')
-
+  const [title, setTitle] = useState<string>('')
+  const [placeholder, setPlaceholder] = useState<string>('Go to the dentist')
 
   console.log(title)
 
   function addChore() {
-
-
-    const isTitleBlank = title.trim().length === 0 // how do we do this?
-
-    const isTitleLengthy = title.length > 20
-
-    console.log(isTitleBlank)
-
+    const isTitleBlank = title.trim().length === 0
     if (isTitleBlank) {
       return
-
     }
 
+    const isTitleLengthy = title.length > 20
     if (isTitleLengthy) {
       alert('Todo is too long')
       return
     }
+
     const newChores = [...chores]
 
-    const newChore: Todo = {
-      title: title
-    }
+    const newChore: Todo = { title }
     newChores.push(newChore)
+
     setChores(newChores)
+
+    // Reset the title for a new Todo
+    setTitle('')
+
+    // TODO: Change placeholder to one of several options
+    const randomIndexToUse = getRandomIndex(exampleChoreTitles.length)
+    const nextPlaceholder = exampleChoreTitles[randomIndexToUse]
+    setPlaceholder(nextPlaceholder)
   }
 
   function removeChore() {
@@ -95,21 +102,18 @@ function App() {
         </button>
         </div>
 
-        <hr />
 
-        <input id="title" type="text" maxLength={30} onChange={event => {
-          const inputValue = event.target.value
-          setTitle(inputValue)
-        }} />
+        <input value={title} id="title" type="text" placeholder={placeholder} maxLength={30}
+          onChange={event => {
+            const inputValue = event.target.value
+            setTitle(inputValue)
+          }} />
 
         <hr />
 
         {chores.map((chore, i) =>
           <TodoItem key={`${i}:${chore.title}`} title={chore.title} severity={chore.severity} />
         )}
-
-        <hr />
-
 
 
         {/* End of canvas */}

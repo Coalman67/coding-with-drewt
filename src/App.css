@@ -14,11 +14,13 @@
 
 .btn {
   display: inline-block;
-  padding: 16px;
+  padding: 8px 12px;
   border-radius: 16px;
-  font-size: 16px;
-  background-color: lightblue;
-  color: black;
+  font-size: 14px;
+  margin: 8px 0;
+  background-color: rgba(0,0,0,0.5);
+  
+  color: white;
   cursor: 'pointer';
 }
 
@@ -30,4 +32,15 @@ hr{
 button.disabled {
   background-color: lightgray;
   cursor: 'not-allowed';
+}
+
+input:focus {
+  outline: none;
+}
+
+input {
+  padding: 8px 8px 8px 12px;
+  margin: 12px 0;
+  font-size: 14px;
+  border-radius: 16px;
 }
