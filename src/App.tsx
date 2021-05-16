@@ -36,6 +36,9 @@ function App() {
 
   console.log(title)
 
+  const handleConfirm = () => { console.log('clicked check, do thing') }
+
+
   function addChore() {
     const isTitleBlank = title.trim().length === 0
     if (isTitleBlank) {
@@ -64,9 +67,9 @@ function App() {
     setPlaceholder(nextPlaceholder)
   }
 
-  function removeChore() {
+  function removeChore(position: number = chores.length - 1) {
     const newChores = [...chores]
-    newChores.pop()
+    newChores.splice(position, 1)
     setChores(newChores)
   }
 
@@ -112,7 +115,12 @@ function App() {
         <hr />
 
         {chores.map((chore, i) =>
-          <TodoItem key={`${i}:${chore.title}`} title={chore.title} severity={chore.severity} />
+          <TodoItem
+            key={`${i}:${chore.title}`}
+            title={chore.title}
+            severity={chore.severity}
+            onConfirm={handleConfirm}
+            onCancel={() => { removeChore(i) }} />
         )}
 
 
