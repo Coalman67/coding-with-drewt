@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { TodoItem } from './components/Todo';
 import { Severity, Todo } from './types';
+import Confetti from 'react-dom-confetti'
 
 const todos: Todo[] = [
   {
@@ -33,8 +34,7 @@ function App() {
   const [chores, setChores] = useState<Todo[]>([])
   const [title, setTitle] = useState<string>('')
   const [placeholder, setPlaceholder] = useState<string>('Go to the dentist')
-
-  console.log(title)
+  const [hasAddedChore, setHasAddedChore] = useState<boolean>(false)
 
   const handleConfirm = () => { console.log('clicked check, do thing') }
 
@@ -65,6 +65,9 @@ function App() {
     const randomIndexToUse = getRandomIndex(exampleChoreTitles.length)
     const nextPlaceholder = exampleChoreTitles[randomIndexToUse]
     setPlaceholder(nextPlaceholder)
+
+    setHasAddedChore(true)
+
   }
 
   function removeChore(position: number = chores.length - 1) {
@@ -74,6 +77,17 @@ function App() {
   }
 
   const canAddTodo = title.length < 20
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+    if (hasAddedChore) {
+      timeout = setTimeout(() => {
+        setHasAddedChore(false)
+      }, 50)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [hasAddedChore])
 
   return (
     <div className="App">
@@ -105,8 +119,9 @@ function App() {
         </button>
         </div>
 
+        <div style={{ marginLeft: 200, marginTop: 50 }}><Confetti active={hasAddedChore} /></div>
 
-        <input value={title} id="title" type="text" placeholder={placeholder} maxLength={30}
+        <input value={title} id="title" type="text" placeholder={placeholder} maxLength={30} style={{ marginTop: -25 }}
           onChange={event => {
             const inputValue = event.target.value
             setTitle(inputValue)
