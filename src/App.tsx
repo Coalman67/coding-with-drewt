@@ -47,6 +47,7 @@ function App() {
 
   const [placeholder, setPlaceholder] = useState<string>('Go to the dentist')
   const [hasAddedChore, setHasAddedChore] = useState<boolean>(false)
+  const [hasRemovedChore, setHasRemovedChore] = useState<boolean>(false)
 
   const handleConfirm = () => { console.log('clicked check, do thing') }
 
@@ -87,6 +88,7 @@ function App() {
     const newChores = [...chores]
     newChores.splice(position, 1)
     setChores(newChores)
+    setHasRemovedChore(true)
   }
 
   const canAddTodo = title.length < 20
@@ -96,14 +98,25 @@ function App() {
     if (hasAddedChore) {
       timeout = setTimeout(() => {
         setHasAddedChore(false)
-      }, 50)
+      }, 500)
     }
 
     return () => clearTimeout(timeout)
-  }, [hasAddedChore])
+  }, [hasAddedChore, setHasAddedChore])
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+    if (hasRemovedChore) {
+      timeout = setTimeout(() => {
+        setHasRemovedChore(false)
+      }, 500)
+    }
+
+    return () => clearTimeout(timeout)
+  }, [hasRemovedChore, setHasRemovedChore])
 
   return (
-    <div className="App">
+    <div className={`app ${hasAddedChore && 'success'} ${hasRemovedChore && 'failure'}`}>
       <div className="container">
         {/* The canvas */}
 
@@ -134,17 +147,25 @@ function App() {
 
         <div style={{ marginLeft: 200, marginTop: 50 }}><Confetti active={hasAddedChore} /></div>
 
-        <input value={title} id="title" type="text" placeholder={placeholder} maxLength={30} style={{ marginTop: -25 }}
-          onChange={event => {
-            const inputValue = event.target.value
-            setTitle(inputValue)
-          }} />
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          addChore();
+        }}>
+          <input value={title} id="title" type="text" placeholder={placeholder} maxLength={30} style={{ marginTop: -25 }}
+            onChange={event => {
+              const inputValue = event.target.value
+              setTitle(inputValue)
+            }} />
 
-        <input value={description} id="description" type="text" placeholder={`This is how you ${placeholder.toLowerCase()}...`} maxLength={60}
-          onChange={event => {
-            const inputValue = event.target.value
-            setDescription(inputValue)
-          }} />
+          <input value={description} id="description" type="text" placeholder={`This is how you ${placeholder.toLowerCase()}...`} maxLength={60}
+            onChange={event => {
+              const inputValue = event.target.value
+              setDescription(inputValue)
+            }} />
+
+          <input type="submit" style={{ display: 'none' }} />
+
+        </form>
 
         <hr />
 

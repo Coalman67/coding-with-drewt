@@ -1,9 +1,21 @@
-.App {
+.app {
   text-align: center;
   background-color: #282c34;
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.app, .btn {
+  transition: all 0.5s ease-in-out;
+}
+
+.app.success {
+  background-color: rebeccapurple;
+}
+
+.app.failure {
+  background-color: red;
 }
 
 .container {
@@ -22,7 +34,22 @@
   
   color: white;
   cursor: 'pointer';
+
+  animation: some-animation;
+  animation-duration: 750ms;
+  animation-timing-function: ease-in-out;
 }
+
+.app.success .btn {
+  color: green;
+  transform: translateY(-4px);
+}
+
+.app.failure .btn {
+  color: orange;
+  transform: scale(1.6) skew(120deg);
+}
+
 
 hr{
   width: 100%;
@@ -43,4 +70,21 @@ input {
   margin: 6px 0;
   font-size: 12px;
   border-radius: 16px;
+}
+
+@keyframes some-animation {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
 }
