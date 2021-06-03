@@ -10,6 +10,8 @@ export interface Todo {
     title: string
     /** The importance of the TODO item. */
     severity?: Severity
+    /** Specifics of a TODO. */
+    description?: string
 }
 
 export interface Animal {

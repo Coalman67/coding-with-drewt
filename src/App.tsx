@@ -4,10 +4,19 @@ import { TodoItem } from './components/Todo';
 import { Severity, Todo } from './types';
 import Confetti from 'react-dom-confetti'
 
+/**
+ * Next steps:
+ * 1. Add an optional description
+ * 2. Mark as completed
+ * 3. Change severity of task
+ * 4. Edit more task fields
+ */
+
 const todos: Todo[] = [
   {
     title: 'Take out the trash',
-    severity: Severity.Medium
+    severity: Severity.Medium,
+    description: 'something'
   },
   {
     title: 'See Despicable Me 2...again'
@@ -32,7 +41,10 @@ function getRandomIndex(length: number): number {
 
 function App() {
   const [chores, setChores] = useState<Todo[]>([])
+
   const [title, setTitle] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
+
   const [placeholder, setPlaceholder] = useState<string>('Go to the dentist')
   const [hasAddedChore, setHasAddedChore] = useState<boolean>(false)
 
@@ -53,13 +65,14 @@ function App() {
 
     const newChores = [...chores]
 
-    const newChore: Todo = { title }
+    const newChore: Todo = { title, description }
     newChores.push(newChore)
 
     setChores(newChores)
 
     // Reset the title for a new Todo
     setTitle('')
+    setDescription('')
 
     // TODO: Change placeholder to one of several options
     const randomIndexToUse = getRandomIndex(exampleChoreTitles.length)
@@ -127,12 +140,19 @@ function App() {
             setTitle(inputValue)
           }} />
 
+        <input value={description} id="description" type="text" placeholder={`This is how you ${placeholder.toLowerCase()}...`} maxLength={60}
+          onChange={event => {
+            const inputValue = event.target.value
+            setDescription(inputValue)
+          }} />
+
         <hr />
 
         {chores.map((chore, i) =>
           <TodoItem
             key={`${i}:${chore.title}`}
             title={chore.title}
+            description={chore.description}
             severity={chore.severity}
             onConfirm={handleConfirm}
             onCancel={() => { removeChore(i) }} />
