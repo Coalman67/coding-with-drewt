@@ -12,7 +12,48 @@ export interface Todo {
     severity?: Severity
     /** Specifics of a TODO. */
     description?: string
+    /** Whether the TODO item is marked as completed. */
+    isCompleted?: boolean
 }
+
+
+
+// property: type
+// string, boolean, number
+
+interface Cat {
+    name: string
+    age: number
+    breed: string
+    weight: string
+    length: string
+    preferredFood: string
+    napSpot: string
+    gender: string
+}
+
+const cats: Cat[] = [
+    {
+        name: 'Jer',
+        age: 6,
+        breed: 'Domestic longhair',
+        weight: '8 pounds',
+        length: '18 inches',
+        preferredFood: 'Tuna pate',
+        napSpot: 'Pillow',
+        gender: 'male'
+    },
+    {
+        name: 'Clem',
+        age: 3,
+        breed: 'Domestic shorthair',
+        weight: '7 pounds',
+        length: '13 inches',
+        preferredFood: 'peanut butter',
+        napSpot: 'cozy places',
+        gender: 'female'
+    }
+]
 
 export interface Animal {
     genus: string

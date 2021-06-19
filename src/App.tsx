@@ -12,7 +12,8 @@ import Confetti from 'react-dom-confetti'
  * 4. Edit more task fields
  */
 
-const todos: Todo[] = [
+
+const todos = [
   {
     title: 'Take out the trash',
     severity: Severity.Medium,
@@ -49,7 +50,15 @@ function App() {
   const [hasAddedChore, setHasAddedChore] = useState<boolean>(false)
   const [hasRemovedChore, setHasRemovedChore] = useState<boolean>(false)
 
-  const handleConfirm = () => { console.log('clicked check, do thing') }
+  const handleConfirm = (index: number) => {
+    const item = chores[index]
+    const newItem: Todo = { ...item, isCompleted: true }
+
+    const items: Todo[] = [...chores]
+    items[index] = newItem
+
+    setChores(items)
+  }
 
 
   function addChore() {
@@ -175,7 +184,8 @@ function App() {
             title={chore.title}
             description={chore.description}
             severity={chore.severity}
-            onConfirm={handleConfirm}
+            isCompleted={chore.isCompleted}
+            onConfirm={() => { handleConfirm(i) }}
             onCancel={() => { removeChore(i) }} />
         )}
 

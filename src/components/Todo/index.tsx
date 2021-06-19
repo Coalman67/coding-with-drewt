@@ -13,11 +13,11 @@ interface Props extends Todo {
     onCancel?: () => void
 }
 
-export const TodoItem: FunctionComponent<Props> = ({ title, description, severity: inputSeverity, onConfirm, onCancel }) => {
+export const TodoItem: FunctionComponent<Props> = ({ title, description, severity: inputSeverity, isCompleted, onConfirm, onCancel }) => {
     const severity = inputSeverity ?? Severity.Low
 
     return (
-        <div className="todo">
+        <div className={`todo ${isCompleted && 'completed'}`}>
             <Circle color={severity} />
 
             <div className="text">
